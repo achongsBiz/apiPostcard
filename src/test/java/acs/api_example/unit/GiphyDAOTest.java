@@ -11,7 +11,7 @@ public class GiphyDAOTest {
     @Test
     public void giphyDAO_ut() {
 
-        String actualResult = giphyDAO.buildRequestURL("lightbulb", "GH3234","https://api.giphy.com/v1/gifs/search?");
+        String actualResult = giphyDAO.buildRequestURL("lightbulb", "https://api.giphy.com/v1/gifs/search?","GH3234");
         String expectedResult = "https://api.giphy.com/v1/gifs/search?api_key=GH3234&q=lightbulb&limit=3";
         assertEquals(expectedResult, actualResult);
     }

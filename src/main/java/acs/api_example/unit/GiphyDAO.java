@@ -50,7 +50,7 @@ public class GiphyDAO {
         return url;
     }
 
-    private List<Gif> gifEntryConverter(ResponseEntity<String> response) {
+    public List<Gif> gifEntryConverter(ResponseEntity<String> response) {
 
         ObjectMapper objectMapper = new ObjectMapper();
         List<Gif> gifEntriesList = new ArrayList<>();

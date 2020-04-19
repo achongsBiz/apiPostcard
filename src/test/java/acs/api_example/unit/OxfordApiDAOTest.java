@@ -36,12 +36,6 @@ public class OxfordApiDAOTest {
 
     }
 
-    @Test
-    public void lexicalEntryConverter_ut() {
-
-
-    }
-
     public String readTestFile() throws IOException {
         String filePath = "../api_example/src/test/resources/oxfordAPITestResponse.json";
         String content = new String(Files.readAllBytes(Paths.get(filePath)));

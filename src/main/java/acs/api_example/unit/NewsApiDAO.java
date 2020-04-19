@@ -1,4 +1,4 @@
-package acs.api_example.dao;
+package acs.api_example.unit;
 
 import acs.api_example.model.Article;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -33,12 +33,19 @@ public class NewsApiDAO {
 
     public List<Article> getArticles() {
 
-        HttpEntity<String> httpEntity = new HttpEntity<>(new HttpHeaders());
-        RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<String> response = restTemplate.exchange(buildRequestURL(this.searchTerm, this.apiURL, this.apiId), HttpMethod.GET, httpEntity, String.class);
+        ResponseEntity<String> response = makeRequest(this.searchTerm, this.apiURL, this.apiId);
         return articleEntryConverter(response);
 
     }
+
+    public ResponseEntity<String> makeRequest(String searchTerm, String apiURL, String apiId) {
+
+        HttpEntity<String> httpEntity = new HttpEntity<>(new HttpHeaders());
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.exchange(buildRequestURL(searchTerm, apiURL, apiId), HttpMethod.GET, httpEntity, String.class);
+
+    }
+
 
     public String buildRequestURL(String word, String apiURL, String apiId) {
 

@@ -1,7 +1,11 @@
-package acs.api_example.dao;
+package acs.api_example.unit;
 
 import org.junit.Test;
 import org.springframework.http.HttpHeaders;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 import static org.junit.Assert.*;
 
@@ -30,5 +34,17 @@ public class OxfordApiDAOTest {
 
         assertTrue(keysAreCorrect);
 
+    }
+
+    @Test
+    public void lexicalEntryConverter_ut() {
+
+
+    }
+
+    public String readTestFile() throws IOException {
+        String filePath = "../api_example/src/test/resources/oxfordAPITestResponse.json";
+        String content = new String(Files.readAllBytes(Paths.get(filePath)));
+        return content;
     }
 }

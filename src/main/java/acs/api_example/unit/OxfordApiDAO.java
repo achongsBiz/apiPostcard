@@ -1,4 +1,4 @@
-package acs.api_example.dao;
+package acs.api_example.unit;
 
 import acs.api_example.model.LexicalEntry;
 import com.fasterxml.jackson.core.JsonParseException;
@@ -41,15 +41,22 @@ public class OxfordApiDAO {
         List<LexicalEntry> listOfDefinitions = new ArrayList<>();
 
         try {
-            HttpEntity<String> httpEntity = new HttpEntity<>(buildRequestHeader("application/json", "f4f29384", "a6c6d4cd83d8d9ae28888094551afb6e"));
-            RestTemplate restTemplate = new RestTemplate();
-            ResponseEntity<String> response = restTemplate.exchange(buildRequestURL(this.searchTerm, this.apiURL), HttpMethod.GET, httpEntity, String.class);
+
+            ResponseEntity<String> response = makeRequest(this.searchTerm, this.apiURL, this.apiId);
             listOfDefinitions = lexicalEntryConverter(response);
         } catch (HttpClientErrorException e) {
             System.out.println("word not found.");
         } finally {
             return listOfDefinitions;
         }
+    }
+
+    public ResponseEntity<String> makeRequest(String searchTerm, String apiURL, String apiId) {
+
+        HttpEntity<String> httpEntity = new HttpEntity<>(buildRequestHeader("application/json", "f4f29384", "a6c6d4cd83d8d9ae28888094551afb6e"));
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.exchange(buildRequestURL(searchTerm, apiURL), HttpMethod.GET, httpEntity, String.class);
+
     }
 
 
@@ -69,7 +76,7 @@ public class OxfordApiDAO {
         return url;
     }
 
-    private List<LexicalEntry> lexicalEntryConverter(ResponseEntity<String> response) {
+    public List<LexicalEntry> lexicalEntryConverter(ResponseEntity<String> response) {
 
         ObjectMapper objectMapper = new ObjectMapper();
         List<LexicalEntry> lexicalEntriesList = new ArrayList<>();

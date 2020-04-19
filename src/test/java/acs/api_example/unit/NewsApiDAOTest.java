@@ -1,7 +1,6 @@
-package acs.api_example.dao;
+package acs.api_example.unit;
 
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDate;
 

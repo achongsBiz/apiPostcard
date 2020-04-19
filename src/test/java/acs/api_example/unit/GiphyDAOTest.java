@@ -1,4 +1,4 @@
-package acs.api_example.dao;
+package acs.api_example.unit;
 
 import org.junit.Test;
 

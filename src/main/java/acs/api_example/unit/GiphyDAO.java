@@ -1,4 +1,4 @@
-package acs.api_example.dao;
+package acs.api_example.unit;
 
 import acs.api_example.model.Gif;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -31,14 +31,20 @@ public class GiphyDAO {
     private String apiURL;
 
     public List<Gif> getGifs() {
-        HttpEntity<String> httpEntity = new HttpEntity<>(new HttpHeaders());
-        RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<String> response = restTemplate.exchange(buildRequestURL(this.searchTerm, this.apiId, this.apiURL), HttpMethod.GET, httpEntity, String.class);
+        ResponseEntity<String> response = makeRequest(this.searchTerm, this.apiURL, this.apiId);
         return gifEntryConverter(response);
 
     }
 
-    public String buildRequestURL(String word, String apiId, String apiURL) {
+    public ResponseEntity<String> makeRequest(String searchTerm, String apiURL, String apiId) {
+
+        HttpEntity<String> httpEntity = new HttpEntity<>(new HttpHeaders());
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.exchange(buildRequestURL(searchTerm, apiURL, apiId), HttpMethod.GET, httpEntity, String.class);
+
+    }
+
+    public String buildRequestURL(String word, String apiURL, String apiId) {
 
         String url = apiURL + "api_key=" + apiId + "&q=" + word + "&limit=3";
         return url;

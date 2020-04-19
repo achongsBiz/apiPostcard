@@ -29,8 +29,9 @@ dependencies {
 	compile("org.springframework.boot:spring-boot-starter-web")
 	compile("org.springframework.boot:spring-boot-devtools")
 	testCompile("junit:junit")
-	testCompile "org.mockito:mockito-core:1.+"
+	testCompile group: 'org.mockito', name: 'mockito-core', version: '3.3.3'
 	testCompile group: 'org.easytesting', name: 'fest-assert', version: '1.4'
+	testCompile group: 'net.bytebuddy', name: 'byte-buddy', version: '1.10.9'
 	compile('org.springframework.boot:spring-boot-starter-web','org.apache.tomcat.embed:tomcat-embed-jasper'
 			,'javax.servlet:jstl')
 	testCompile('org.springframework.boot:spring-boot-starter-test')

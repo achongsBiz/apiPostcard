@@ -1,8 +1,8 @@
 package acs.api_example.controller;
 
-import acs.api_example.dao.GiphyDAO;
-import acs.api_example.dao.NewsApiDAO;
-import acs.api_example.dao.OxfordApiDAO;
+import acs.api_example.unit.GiphyDAO;
+import acs.api_example.unit.NewsApiDAO;
+import acs.api_example.unit.OxfordApiDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -33,15 +33,14 @@ public class GiphyDAO {
     public List<Gif> getGifs() {
         HttpEntity<String> httpEntity = new HttpEntity<>(new HttpHeaders());
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<String> response = restTemplate.exchange(buildRequestURL(this.searchTerm), HttpMethod.GET, httpEntity, String.class);
+        ResponseEntity<String> response = restTemplate.exchange(buildRequestURL(this.searchTerm, this.apiId, this.apiURL), HttpMethod.GET, httpEntity, String.class);
         return gifEntryConverter(response);
 
     }
 
-    private String buildRequestURL(String word) {
+    public String buildRequestURL(String word, String apiId, String apiURL) {
 
         String url = apiURL + "api_key=" + apiId + "&q=" + word + "&limit=3";
-        System.out.println("the url: " + url);
         return url;
     }
 

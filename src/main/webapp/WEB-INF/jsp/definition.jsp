@@ -31,8 +31,8 @@ grid-template-areas:
 <div class="grid-area">
     <div class = "grid-area-1">
         <H2>According to the dictionary:</H2>
-        <c:forEach var="hi" items="${definitions}">
-        (${hi.partOfSpeech})  ${hi.definitions}
+        <c:forEach var="definition" items="${definitions}">
+        (${definition.partOfSpeech})  ${definition.definitions}
         <br>
         <br>
         </c:forEach>
@@ -40,16 +40,20 @@ grid-template-areas:
 
     <div class = "grid-area-2">
         <H2>According to the internet:</H2>
-        <c:forEach var="yo" items="${gifs}">
-            <img src="${yo.gifURL}" alt="Couldn't Render"/>
+        <c:forEach var="gif" items="${gifs}">
+            <img src="${gif.gifURL}" alt="Couldn't Render"/>
         </c:forEach>
     </div>
 
     <div class = "grid-area-3">
          <H2>According to the news:</H2>
-            <c:forEach var="ye" items="${articles}">
-                ${ye.link}<br>
+         <ul>
+            <c:forEach var="article" items="${articles}">
+            <li>
+                ${article.link}
+            </li>
             </c:forEach>
+        </ul>
         </div>
 </div>
 

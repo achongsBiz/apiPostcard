@@ -21,7 +21,7 @@ public class MainController {
     @Autowired
     NewsApiDAO newsApiDAO;
 
-    @GetMapping(value="/hi")
+    @GetMapping(value="/postcard")
     public String definition(@RequestParam(name = "word", required = false, defaultValue = "shiba") String word, Model model) {
 
         oxfordDAO.setSearchTerm(word);

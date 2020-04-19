@@ -15,6 +15,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @Component
 public class NewsApiDAO {
 
@@ -34,25 +35,22 @@ public class NewsApiDAO {
 
         HttpEntity<String> httpEntity = new HttpEntity<>(new HttpHeaders());
         RestTemplate restTemplate = new RestTemplate();
-        buildRequestURL(this.searchTerm);
-        ResponseEntity<String> response = restTemplate.exchange(buildRequestURL(this.searchTerm), HttpMethod.GET, httpEntity, String.class);
-
+        ResponseEntity<String> response = restTemplate.exchange(buildRequestURL(this.searchTerm, this.apiURL, this.apiId), HttpMethod.GET, httpEntity, String.class);
         return articleEntryConverter(response);
 
     }
 
-    private String buildRequestURL(String word) {
+    public String buildRequestURL(String word, String apiURL, String apiId) {
 
         LocalDate today = LocalDate.now();
         LocalDate lowerBoundDate = today.minusWeeks(4);
         String lowerBoundDateStr = lowerBoundDate.getYear() + "-" + lowerBoundDate.getMonth() + "-" + lowerBoundDate.getDayOfMonth();
         String url = apiURL + "apiKey=" + apiId + "&qInTitle=" + word + "&from=" + lowerBoundDateStr + "&language=en";
-        System.out.println("the url: " + url);
 
         return url;
     }
 
-    private List<Article> articleEntryConverter(ResponseEntity<String> response) {
+    public List<Article> articleEntryConverter(ResponseEntity<String> response) {
 
         ObjectMapper objectMapper = new ObjectMapper();
         ArrayList<Article> articlesList = new ArrayList<>();

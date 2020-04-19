@@ -43,7 +43,7 @@ public class OxfordApiDAO {
         try {
             HttpEntity<String> httpEntity = new HttpEntity<>(buildRequestHeader("application/json", "f4f29384", "a6c6d4cd83d8d9ae28888094551afb6e"));
             RestTemplate restTemplate = new RestTemplate();
-            ResponseEntity<String> response = restTemplate.exchange(buildRequestURL(this.searchTerm), HttpMethod.GET, httpEntity, String.class);
+            ResponseEntity<String> response = restTemplate.exchange(buildRequestURL(this.searchTerm, this.apiURL), HttpMethod.GET, httpEntity, String.class);
             listOfDefinitions = lexicalEntryConverter(response);
         } catch (HttpClientErrorException e) {
             System.out.println("word not found.");
@@ -53,7 +53,7 @@ public class OxfordApiDAO {
     }
 
 
-    private HttpHeaders buildRequestHeader(String contentType, String app_id, String app_key) {
+    public HttpHeaders buildRequestHeader(String contentType, String app_id, String app_key) {
 
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.set("Content-Type", contentType);
@@ -63,11 +63,9 @@ public class OxfordApiDAO {
         return httpHeaders;
     }
 
-    private String buildRequestURL(String word) {
+    public String buildRequestURL(String word, String apiURL) {
 
         String url = apiURL + word;
-        System.out.println(url);
-
         return url;
     }
 

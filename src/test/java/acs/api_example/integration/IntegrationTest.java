@@ -2,9 +2,9 @@ package acs.api_example.integration;
 
 import acs.api_example.model.Article;
 import acs.api_example.model.Gif;
-import acs.api_example.unit.GiphyDAO;
-import acs.api_example.unit.NewsApiDAO;
-import acs.api_example.unit.OxfordApiDAO;
+import acs.api_example.data.GiphyDAO;
+import acs.api_example.data.NewsApiDAO;
+import acs.api_example.data.OxfordApiDAO;
 import acs.api_example.model.LexicalEntry;
 import org.junit.Before;
 import org.junit.Test;
@@ -90,7 +90,7 @@ public class IntegrationTest {
         when(giphyDAO.gifEntryConverter(mockResponse)).thenCallRealMethod();
         List<Gif> testResults = giphyDAO.gifEntryConverter(mockResponse);
 
-        assertEquals(3, testResults.size());
+        assertEquals(5, testResults.size());
 
 
     }

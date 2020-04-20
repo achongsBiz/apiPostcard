@@ -1,4 +1,4 @@
-package acs.api_example.unit;
+package acs.api_example.data;
 
 import org.junit.Test;
 

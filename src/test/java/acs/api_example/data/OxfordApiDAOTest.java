@@ -1,11 +1,7 @@
-package acs.api_example.unit;
+package acs.api_example.data;
 
 import org.junit.Test;
 import org.springframework.http.HttpHeaders;
-
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 import static org.junit.Assert.*;
 

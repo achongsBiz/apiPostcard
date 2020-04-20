@@ -1,8 +1,8 @@
 package acs.api_example.controller;
 
-import acs.api_example.unit.GiphyDAO;
-import acs.api_example.unit.NewsApiDAO;
-import acs.api_example.unit.OxfordApiDAO;
+import acs.api_example.data.GiphyDAO;
+import acs.api_example.data.NewsApiDAO;
+import acs.api_example.data.OxfordApiDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,7 +22,7 @@ public class MainController {
     @Autowired
     NewsApiDAO newsApiDAO;
 
-    @GetMapping(value="/postcard")
+    @GetMapping(value = {"/postcard", "/"})
     public String definition(@RequestParam(name = "word", required = false, defaultValue = "cat") String word, Model model) {
 
         oxfordDAO.setSearchTerm(word);

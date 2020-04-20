@@ -26,7 +26,9 @@
                 <tr><td class='att-title'>API Used:</td><td class='att-name'>Oxford Dictionary API</td></tr>
                 <tr><td colspan='2' class='att-url'>https://developer.oxforddictionaries.com/</td></tr>
             </table>
+            <hr/>
         </div>
+
 
 
     </c:if>
@@ -44,6 +46,7 @@
                 <tr><td class='att-title'>API Used:</td><td class='att-name'>Giphy API</td></tr>
                 <tr><td colspan='2' class='att-url'>https://developers.giphy.com/</td></tr>
               </table>
+              <hr/>
         </div>
     </c:if>
 
@@ -61,6 +64,7 @@
             <tr><td class='att-title'>API Used:</td><td class='att-name'>News API</td></tr>
             <tr><td colspan='2' class='att-url'>https://newsapi.org/</td></tr>
         </table>
+        <hr/>
      </div>
     </c:if>
 </div>

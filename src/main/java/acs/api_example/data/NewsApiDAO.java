@@ -1,6 +1,6 @@
-package acs.api_example.unit;
+package acs.api_example.data;
 
-import acs.api_example.model.Gif;
+import acs.api_example.model.Article;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
@@ -10,13 +10,14 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
-
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @Component
-public class GiphyDAO {
+public class NewsApiDAO {
 
     private String searchTerm;
 
@@ -24,15 +25,16 @@ public class GiphyDAO {
         this.searchTerm = searchTerm;
     }
 
-    @Value("${giphy.api.key}")
+    @Value("${news.api.key}")
     private String apiId;
 
-    @Value("${giphy.api.url}")
+    @Value("${news.api.url}")
     private String apiURL;
 
-    public List<Gif> getGifs() {
+    public List<Article> getArticles() {
+
         ResponseEntity<String> response = makeRequest(this.searchTerm, this.apiURL, this.apiId);
-        return gifEntryConverter(response);
+        return articleEntryConverter(response);
 
     }
 
@@ -44,31 +46,46 @@ public class GiphyDAO {
 
     }
 
+
     public String buildRequestURL(String word, String apiURL, String apiId) {
 
-        String url = apiURL + "api_key=" + apiId + "&q=" + word + "&limit=5";
+        LocalDate today = LocalDate.now();
+        LocalDate lowerBoundDate = today.minusWeeks(4);
+        String lowerBoundDateStr = lowerBoundDate.getYear() + "-" + lowerBoundDate.getMonth() + "-" + lowerBoundDate.getDayOfMonth();
+        String url = apiURL + "apiKey=" + apiId + "&qInTitle=" + word + "&from=" + lowerBoundDateStr + "&language=en";
+
         return url;
     }
 
-    public List<Gif> gifEntryConverter(ResponseEntity<String> response) {
+    public List<Article> articleEntryConverter(ResponseEntity<String> response) {
 
         ObjectMapper objectMapper = new ObjectMapper();
-        List<Gif> gifEntriesList = new ArrayList<>();
-
+        ArrayList<Article> articlesList = new ArrayList<>();
         try {
+
             JsonNode jsonNode = objectMapper.readTree(response.getBody());
 
-            if(jsonNode.path("data").size() > 0) {
-                for (int i = 0; i < 5; i++) {
-                    Gif gif = new Gif(jsonNode.path("data").path(i).path("images").path("fixed_height_small").path("url").asText());
-                    gifEntriesList.add(gif);
+            if (!jsonNode.path("totalResults").asText().equals(0)) {
+
+                int upperBound = jsonNode.path("articles").size() < 5 ? jsonNode.path("articles").size() : 5;
+
+                if (upperBound > 0) {
+                    for (int i = 0; i < upperBound; i++) {
+
+                        String title = jsonNode.path("articles").path(i).path("title").asText();
+                        String link = jsonNode.path("articles").path(i).path("url").asText();
+                        String author = jsonNode.path("articles").path(i).path("author").asText();
+
+                        Article article = new Article(title, author, link);
+                        articlesList.add(article);
+                    }
                 }
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        return gifEntriesList;
+        return articlesList;
     }
 }
+

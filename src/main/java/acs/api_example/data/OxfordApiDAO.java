@@ -1,4 +1,4 @@
-package acs.api_example.unit;
+package acs.api_example.data;
 
 import acs.api_example.model.LexicalEntry;
 import com.fasterxml.jackson.core.JsonParseException;

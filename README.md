@@ -3,9 +3,6 @@
 ## Introduction
 This application takes a search input from the user and displays matching results from three different API's. It will display a dictionary definition for the word searched, a list of matching gif images, and current news articles relevant to the search term.
 
-## Visuals
-![alt text](https://github.com/achongsBiz/readme-files/blob/master/api-postcards/sc1.png)
-
 ## Architecture
 
 * Data:
@@ -22,6 +19,9 @@ This application takes a search input from the user and displays matching result
 * Testing:
     * Unit Tests through J-Unit.
     * Integration Testing through J-Unit and Mockito.
+
+## Visuals
+![screenshot](https://github.com/achongsBiz/readme-files/blob/master/api-postcards/sc1.png)
 
 ## Citations and Acknowledgements 
 The free tier of the above mentioned API's were used.

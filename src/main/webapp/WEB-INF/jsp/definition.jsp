@@ -1,32 +1,14 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <html>
 <head>
-<style>
-.grid-area {
-display: grid;
-grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-grid-template-areas:
-    "defs defs gifs gifs articles"
-    "defs defs gifs gifs articles";
-}
-
-.grid-area1 {
-    grid-area: defs;
-}
-
-.grid-area2 {
-     grid-area: gifs;
- }
-
-.grid-area3 {
-    grid-area: articles;
-}
-</style>
-
 
 </head>
 
 <body>
+
+<form action='/postcard' method='POST'>
+    <span>Search Term:</span> <input type='text' name='word'> <input type='submit' value='Search'/>
+</form>
 
 <div class="grid-area">
     <div class = "grid-area-1">
@@ -50,7 +32,7 @@ grid-template-areas:
          <ul>
             <c:forEach var="article" items="${articles}">
             <li>
-                ${article.link}
+                <a href='${article.link}' target="_blank">${article.link}</a>
             </li>
             </c:forEach>
         </ul>

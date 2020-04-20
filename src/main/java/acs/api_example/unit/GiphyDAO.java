@@ -46,7 +46,7 @@ public class GiphyDAO {
 
     public String buildRequestURL(String word, String apiURL, String apiId) {
 
-        String url = apiURL + "api_key=" + apiId + "&q=" + word + "&limit=3";
+        String url = apiURL + "api_key=" + apiId + "&q=" + word + "&limit=5";
         return url;
     }
 
@@ -59,8 +59,8 @@ public class GiphyDAO {
             JsonNode jsonNode = objectMapper.readTree(response.getBody());
 
             if(jsonNode.path("data").size() > 0) {
-                for (int i = 0; i < 3; i++) {
-                    Gif gif = new Gif(jsonNode.path("data").path(i).path("images").path("fixed_width").path("url").asText());
+                for (int i = 0; i < 5; i++) {
+                    Gif gif = new Gif(jsonNode.path("data").path(i).path("images").path("fixed_height_small").path("url").asText());
                     gifEntriesList.add(gif);
                 }
             }

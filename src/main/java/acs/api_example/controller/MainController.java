@@ -23,7 +23,7 @@ public class MainController {
     NewsApiDAO newsApiDAO;
 
     @GetMapping(value="/postcard")
-    public String definition(@RequestParam(name = "word", required = false, defaultValue = "shiba") String word, Model model) {
+    public String definition(@RequestParam(name = "word", required = false, defaultValue = "cat") String word, Model model) {
 
         oxfordDAO.setSearchTerm(word);
         model.addAttribute("definitions", oxfordDAO.getDefinitions());

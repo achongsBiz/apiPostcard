@@ -1,0 +1,33 @@
+* {
+    font-family: sans-serif;
+}
+
+.info-block {
+    margin: 25px;
+}
+
+
+.att-title {
+    background-color: #ccebff;
+}
+
+.att-name {
+    background-color: #ffeb99;
+}
+
+.att-url {
+    background-color: #e0e0eb;
+}
+
+#search-form {
+    margin: 25px;
+    padding: 25px;
+    background-color: #d9d9f2;
+    width: 75%
+}
+
+#current-search-term {
+    background-color: #e0e0eb;
+    padding: 5px;
+
+}

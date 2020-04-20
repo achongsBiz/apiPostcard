@@ -16,7 +16,7 @@ public class OxfordApiDAOTest {
     @Test
     public void buildRequestURL_ut() {
 
-        String actualResult = oxfordApiDAO.buildRequestURL("lightbulb","https://od-api.oxforddictionaries.com/api/v2/entries/en/");
+        String actualResult = oxfordApiDAO.buildRequestURL("lightbulb", "https://od-api.oxforddictionaries.com/api/v2/entries/en/");
         String expectedResult = "https://od-api.oxforddictionaries.com/api/v2/entries/en/lightbulb";
         assertEquals(expectedResult, actualResult);
     }
@@ -24,21 +24,15 @@ public class OxfordApiDAOTest {
     @Test
     public void buildHeaders_ut() {
 
-        HttpHeaders actualHeader= oxfordApiDAO.buildRequestHeader("application/json", "AY345", "JJKE");
+        HttpHeaders actualHeader = oxfordApiDAO.buildRequestHeader("application/json", "AY345", "JJKE");
 
         boolean keysAreCorrect = true;
 
-        if(!actualHeader.containsKey("Content-Type") || !actualHeader.containsKey("app_id") || !actualHeader.containsKey("app_key")) {
+        if (!actualHeader.containsKey("Content-Type") || !actualHeader.containsKey("app_id") || !actualHeader.containsKey("app_key")) {
             keysAreCorrect = false;
         }
 
         assertTrue(keysAreCorrect);
 
-    }
-
-    public String readTestFile() throws IOException {
-        String filePath = "../api_example/src/test/resources/oxfordAPITestResponse.json";
-        String content = new String(Files.readAllBytes(Paths.get(filePath)));
-        return content;
     }
 }
